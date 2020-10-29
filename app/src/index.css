@@ -1,5 +1,5 @@
 * {
-  font-size: 1vw;
+  font-size: 1.5vw;
 }
 
 main {
@@ -7,6 +7,25 @@ main {
   max-width: 1300px;
   width: 100%;
   border: 1px solid black;
+  position: relative;
+}
+
+#welcome-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#instrucitons-header {
+  padding: 10px;
+}
+
+#welcome-container .centered {
+  align-self: center;
+  padding: 10px;
+}
+
+#welcome-container li {
+  padding: 10px;
 }
 
 #trivia-header {
@@ -37,11 +56,10 @@ main {
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-}
-.option {
+  background-color: lightgray;
 }
 
-.selected {
+.grid-square.selected {
   background-color: royalblue;
 }
 
@@ -97,4 +115,25 @@ main {
   display: flex;
   justify-content: center;
   padding: 10px;
+}
+
+#reveal-answer {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  height: 300px;
+  width: 400px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.success-background {
+  background-color: lightgreen;
+}
+
+.fail-background {
+  background-color: palevioletred;
 }
