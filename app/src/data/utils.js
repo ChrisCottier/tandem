@@ -16,3 +16,12 @@ export const randomizeOptions = (otherAnswers, correct) => {
     copy.splice(randomInd, 0, correct);
     return copy;
 }
+
+export const findTotalCorrect = (arr) => {
+    return arr.reduce((acc, ele) => {
+        if (ele) {
+            return acc + 1
+        }
+        return acc;
+    }, 0)
+}

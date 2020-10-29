@@ -5,7 +5,7 @@ const Welcome = () => {
     return (
         <main>
             <div id="welcome-container">
-                <h1>Welcome, to Chris' Trivia challenge!</h1>
+                <h1>Welcome to Chris' Trivia challenge!</h1>
                 <div>
                     Instructions
                 </div>

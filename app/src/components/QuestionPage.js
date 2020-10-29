@@ -1,38 +1,30 @@
 import React, {useEffect, useState} from 'react'
 
-import {randomizeOptions} from '../data/utils'
+import {randomizeOptions, findTotalCorrect} from '../data/utils'
 
 const QuestionPage = (props) => {
     const {
         questions,
-        currentQuestion,
+        currentIndex,
         correctAnswers,
         setCorrectAnswers,
-        setCurrentQuestion
+        setCurrentIndex
     } = props;
 
-    const [selectedAnswer, setSelectedAnswer] = useState('')
+    const [selectedAnswer, setSelectedAnswer] = useState('');
+    const [currentTrivia, setCurrentTrivia] = useState(questions[currentIndex])
     const [options, setOptions] = useState([])
 
-    //find current question and destructure its keys
-    const currentTrivia = questions[currentQuestion - 1];
-    const {question, incorrect, correct } = currentTrivia;
-
+        
     //how many correct questions so far, correctAnswers will be an array of 
     //true/false (corresponding to right or wrong answers)
-    const totalCorrect = correctAnswers.reduce((acc, ele) => {
-        if (ele) {
-            return acc + 1
-        }
-        return acc;
-    }, 0)
+    const totalCorrect = findTotalCorrect(correctAnswers)
 
-    //array with randomized order of options
+    //array with randomized order of options, updated at each trivia question
     useEffect(() => {
-        if (options.length > 0) return;
-        setOptions(randomizeOptions(incorrect, correct));
+        setOptions(randomizeOptions(currentTrivia.incorrect, currentTrivia.correct));
 
-    })
+    },[currentTrivia])
 
     //Functions to handle user input
     const changeSelection = (event) => {
@@ -40,6 +32,18 @@ const QuestionPage = (props) => {
         const selected = event.currentTarget;
         const text = selected.getAttribute('data-text');
         setSelectedAnswer(text);
+    }
+
+    const submitAnswer = (event) => {
+        event.stopPropagation();
+        if (selectedAnswer === '') return;
+        setSelectedAnswer('');
+        const isCorrect = (selectedAnswer === currentTrivia.correct);
+        const newCorrectStatus = [...correctAnswers, isCorrect];
+        setCorrectAnswers(newCorrectStatus);
+        setCurrentTrivia(questions[currentIndex + 1]);
+        setCurrentIndex(currentIndex + 1);
+
     }
     
 
@@ -50,11 +54,11 @@ const QuestionPage = (props) => {
             <div id="trivia-header">
                 <div>
                     <h2>Question Number</h2>
-                    <span>{currentQuestion}</span>
+                    <span>{currentIndex + 1}</span>
                 </div>
 
                 <div>
-                    {question}
+                    {currentTrivia.question}
                 </div>
 
                 <div>
@@ -68,7 +72,7 @@ const QuestionPage = (props) => {
                 {options.map((option, ind) => {
                     return (
                         <div 
-                        className={`grid-square ${option === selectedAnswer ? 'selected' : ''}`} 
+                        className={`grid-square clickable ${option === selectedAnswer ? 'selected' : ''}`} 
                         key={ind} 
                         data-text={option} 
                         onClick={changeSelection}>
@@ -80,8 +84,8 @@ const QuestionPage = (props) => {
 
 
             <div id="trivia-output">
-                <div>{selectedAnswer}</div>
-                <button>Submit</button>
+                <div id="output-text"><span>{selectedAnswer}</span></div>
+                <button className="clickable" onClick={submitAnswer}>Submit</button>
             </div>
         </main>
     )
