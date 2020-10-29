@@ -44,4 +44,11 @@ main {
 #trivia-output {
   display: grid;
   grid-template-columns: 4fr 1fr;
+  min-height: 100px;
+}
+
+#output-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

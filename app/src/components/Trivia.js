@@ -14,7 +14,7 @@ const Trivia = () => {
     const [correctAnswers, setCorrectAnswers] = useState([]);
 
     //currentQuestion keeps track of the question progression
-    const [currentQuestion, setCurrentQuestion] = useState(1);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     //populate questions by choosing 10 randomly on component load.
     useState(() => {
@@ -23,16 +23,16 @@ const Trivia = () => {
     })
 
 
-    if (currentQuestion < 11) {
+    if (currentIndex < 10) {
         return (
             <QuestionPage 
             // Each state is needed to display the quiz page for every question.
             // after the response to each question, correct answers and current page are updated
             questions={questions}
-            currentQuestion={currentQuestion}
+            currentIndex={currentIndex}
             correctAnswers={correctAnswers}
             setCorrectAnswers={setCorrectAnswers}
-            setCurrentPage={setCurrentQuestion}
+            setCurrentIndex={setCurrentIndex}
             ></QuestionPage>
         )
     } else {
