@@ -5,7 +5,7 @@ const Welcome = () => {
     return (
         <main>
             <div id="welcome-container">
-                <h1 className="centered">Welcome to Chris' Trivia challenge!</h1>
+                <h1 className="centered">Welcome to Chris' Trivia Challenge!</h1>
                 <div id="instrucitons-header">
                     Instructions
                 </div>
@@ -27,8 +27,8 @@ const Welcome = () => {
                         you got right or wrong. Have fun!
                     </li>
                 </ul>
-                <NavLink className="centered" to="trivia">
-                    <button className="clickable">Begin</button>
+                <NavLink className="centered" to="trivia" data-testid='begin-link'>
+                    <button id='begin-button' data-testid='begin-button' className="clickable">Begin</button>
                 </NavLink>
             </div>
         </main>
