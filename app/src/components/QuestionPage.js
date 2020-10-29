@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-import {randomizeOptions} from '../data/utils'
+import {randomizeOptions, findTotalCorrect} from '../data/utils'
 
 const QuestionPage = (props) => {
     const {
@@ -18,12 +18,7 @@ const QuestionPage = (props) => {
         
     //how many correct questions so far, correctAnswers will be an array of 
     //true/false (corresponding to right or wrong answers)
-    const totalCorrect = correctAnswers.reduce((acc, ele) => {
-        if (ele) {
-            return acc + 1
-        }
-        return acc;
-    }, 0)
+    const totalCorrect = findTotalCorrect(correctAnswers)
 
     //array with randomized order of options, updated at each trivia question
     useEffect(() => {
@@ -77,7 +72,7 @@ const QuestionPage = (props) => {
                 {options.map((option, ind) => {
                     return (
                         <div 
-                        className={`grid-square ${option === selectedAnswer ? 'selected' : ''}`} 
+                        className={`grid-square clickable ${option === selectedAnswer ? 'selected' : ''}`} 
                         key={ind} 
                         data-text={option} 
                         onClick={changeSelection}>
@@ -90,7 +85,7 @@ const QuestionPage = (props) => {
 
             <div id="trivia-output">
                 <div id="output-text"><span>{selectedAnswer}</span></div>
-                <button onClick={submitAnswer}>Submit</button>
+                <button className="clickable" onClick={submitAnswer}>Submit</button>
             </div>
         </main>
     )

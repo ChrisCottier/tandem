@@ -1,3 +1,7 @@
+* {
+  font-size: 1vw;
+}
+
 main {
   margin: auto;
   max-width: 1300px;
@@ -51,4 +55,46 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+#results-header {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-size: 3vw;
+}
+
+.success {
+  color: green;
+}
+
+.fail {
+  color: red;
+}
+
+.review-question {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.review-question div {
+  display: flex;
+  align-items: center;
+}
+
+.review-question i {
+  margin-right: 20px;
+}
+
+#results-options {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }

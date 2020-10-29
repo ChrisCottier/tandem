@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import QuestionPage from './QuestionPage'
+import Results from './Results'
 import data from '../data/data'
 import {chooseQuestions} from '../data/utils'
 
@@ -33,10 +34,15 @@ const Trivia = () => {
             correctAnswers={correctAnswers}
             setCorrectAnswers={setCorrectAnswers}
             setCurrentIndex={setCurrentIndex}
-            ></QuestionPage>
+            />
         )
     } else {
-        return(<></>)
+        return(
+            <Results
+            questions={questions}
+            correctAnswers={correctAnswers}
+            />
+        )
     }
 }
 
