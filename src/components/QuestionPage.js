@@ -63,7 +63,7 @@ const QuestionPage = (props) => {
             <div id="trivia-header">
                 <div>
                     <h2>Question Number</h2>
-                    <span>{currentIndex + 1}</span>
+                    <span data-testid="question-number">{currentIndex + 1}</span>
                 </div>
 
                 <div>
@@ -81,9 +81,9 @@ const QuestionPage = (props) => {
             the options will be displayed. */}
 
             {revealAnswer[0] ? (
-                <div id="reveal-answer" className={revealAnswer[1] ? 'success-background' : 'fail-background'}>
+                <div id="reveal-answer" data-testid="reveal-answer" className={revealAnswer[1] ? 'success-background' : 'fail-background'}>
                     <span>Correct Answer:</span>
-                    <span>{currentTrivia.correct}</span>
+                    <span data-testid='correct-answer'>{currentTrivia.correct}</span>
                 </div>
             ) : <></>
             }
@@ -94,7 +94,8 @@ const QuestionPage = (props) => {
                     return (
                         <div 
                         className={`grid-square clickable ${option === selectedAnswer ? 'selected' : ''}`} 
-                        key={ind} 
+                        key={ind}
+                        data-testid={`option-${ind + 1}`}
                         data-text={option} 
                         onClick={changeSelection}>
                             <div className="option" >{option}</div>
@@ -107,7 +108,7 @@ const QuestionPage = (props) => {
 
             <div id="trivia-output">
                 <div id="output-text"><span>{selectedAnswer}</span></div>
-                {!revealAnswer[0] ? <button className="clickable" onClick={submitAnswer}>Submit</button> : <></>}
+                {!revealAnswer[0] ? <button data-testid='submit-button' className="clickable" onClick={submitAnswer}>Submit</button> : <></>}
             </div>
         </main>
     )
