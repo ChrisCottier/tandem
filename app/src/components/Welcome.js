@@ -5,15 +5,30 @@ const Welcome = () => {
     return (
         <main>
             <div id="welcome-container">
-                <h1>Welcome to Chris' Trivia challenge!</h1>
-                <div>
+                <h1 className="centered">Welcome to Chris' Trivia challenge!</h1>
+                <div id="instrucitons-header">
                     Instructions
                 </div>
                 <ul>
-                    <li>Don't be a moron</li>
+                    <li>
+                        Press Begin to start the round of trivia! A round has
+                        10 randomly selected questions.
+                    </li>
+                    <li>
+                        Select an answer to the prompted question by clicking 
+                        it's square.
+                    </li>
+                    <li>
+                        When you have decided on your selection, click submit
+                        to continue.
+                    </li>
+                    <li>
+                        After the 10 questions, you can review which questions
+                        you got right or wrong. Have fun!
+                    </li>
                 </ul>
-                <NavLink to="trivia">
-                    <button>Begin</button>
+                <NavLink className="centered" to="trivia">
+                    <button className="clickable">Begin</button>
                 </NavLink>
             </div>
         </main>

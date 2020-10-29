@@ -13,7 +13,8 @@ const QuestionPage = (props) => {
 
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [currentTrivia, setCurrentTrivia] = useState(questions[currentIndex])
-    const [options, setOptions] = useState([])
+    const [options, setOptions] = useState([]);
+    const [revealAnswer, setRevealAnswer] = useState([false, false]);
 
         
     //how many correct questions so far, correctAnswers will be an array of 
@@ -37,15 +38,23 @@ const QuestionPage = (props) => {
     const submitAnswer = (event) => {
         event.stopPropagation();
         if (selectedAnswer === '') return;
-        setSelectedAnswer('');
+        //First we will display whether the user got the answer correct
         const isCorrect = (selectedAnswer === currentTrivia.correct);
-        const newCorrectStatus = [...correctAnswers, isCorrect];
-        setCorrectAnswers(newCorrectStatus);
-        setCurrentTrivia(questions[currentIndex + 1]);
-        setCurrentIndex(currentIndex + 1);
+        setRevealAnswer([true, isCorrect])
+
+        //After a timeout, the next question will be shown
+        setTimeout(() => {
+            setRevealAnswer([false, false]);
+            setSelectedAnswer('');
+            const newCorrectStatus = [...correctAnswers, isCorrect];
+            setCorrectAnswers(newCorrectStatus);
+            setCurrentIndex(currentIndex + 1);
+            setCurrentTrivia(questions[currentIndex + 1]);
+        }, 3000)
 
     }
     
+    //
 
     //Component
     return (
@@ -68,8 +77,20 @@ const QuestionPage = (props) => {
 
             </div>
 
+            {/* If the answer has been submitted, the answer will be revealed, else
+            the options will be displayed. */}
+
+            {revealAnswer[0] ? (
+                <div id="reveal-answer" className={revealAnswer[1] ? 'success-background' : 'fail-background'}>
+                    <span>Correct Answer:</span>
+                    <span>{currentTrivia.correct}</span>
+                </div>
+            ) : <></>
+            }
+
             <div id="trivia-options">
-                {options.map((option, ind) => {
+                {
+                options.map((option, ind) => {
                     return (
                         <div 
                         className={`grid-square clickable ${option === selectedAnswer ? 'selected' : ''}`} 
@@ -79,13 +100,14 @@ const QuestionPage = (props) => {
                             <div className="option" >{option}</div>
                         </div>
                     )
-                })}
+                })
+                }
             </div>
 
 
             <div id="trivia-output">
                 <div id="output-text"><span>{selectedAnswer}</span></div>
-                <button className="clickable" onClick={submitAnswer}>Submit</button>
+                {!revealAnswer[0] ? <button className="clickable" onClick={submitAnswer}>Submit</button> : <></>}
             </div>
         </main>
     )
