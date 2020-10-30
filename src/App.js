@@ -2,6 +2,7 @@ import React from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Welcome from "./components/Welcome"
 import Trivia from "./components/Trivia"
+import data from './data/data'
 
 
 //Three main views:
@@ -13,7 +14,9 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Welcome} />
-        <Route path="/trivia" component={Trivia} />
+        <Route path="/trivia">
+          <Trivia data={data} />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

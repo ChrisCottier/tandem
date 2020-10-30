@@ -2,12 +2,12 @@ import React, {useState} from 'react'
 
 import QuestionPage from './QuestionPage'
 import Results from './Results'
-import data from '../data/data'
 import {chooseQuestions} from '../data/utils'
 
 
-const Trivia = () => {
-    
+const Trivia = (props) => {
+    const {data} = props;
+
     //The questions state will store 10 questions in this round of trivia
     const [questions, setQuestions] = useState([]);
 
@@ -23,7 +23,7 @@ const Trivia = () => {
         setQuestions(chooseQuestions(10, data));
     })
 
-
+    if (questions.length === 0) return null;
     if (currentIndex < 10) {
         return (
             <QuestionPage 
