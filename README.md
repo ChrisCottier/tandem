@@ -7,10 +7,11 @@ application is to allow users to engage in a round of trivia (10 questions), wit
 From a pool of 20 questions, 10 are chosen in random order, guaranteeing a different experience each round.
 
 React seemed like a natural choice for this kind of application for two primary reasons:
-[-] The quiz pages will likely be identical except for input, so writing component that can take similar inputs and display them
-in an identical fashion seemed like a useful and flexible tact.
-[-] React Hooks, in this case useState and useEffect, supply the state management necessary to progress through and display results of a trivia
-quiz.
+
+1. The quiz pages will likely be identical except for input, so writing component that can take similar inputs and display them
+   in an identical fashion seemed like a useful and flexible tact.
+2. React Hooks, in this case useState and useEffect, supply the state management necessary to progress through and display results of a trivia
+   quiz.
 
 ## Installing and Launching
 
