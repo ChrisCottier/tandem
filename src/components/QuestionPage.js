@@ -29,7 +29,11 @@ const QuestionPage = (props) => {
 
     //Functions to handle user input
     const changeSelection = (event) => {
-        event.stopPropagation()
+        event.stopPropagation();
+
+        //if the answer is already revealed, changing selections is disallowed
+        if (revealAnswer[0]) return;
+
         const selected = event.currentTarget;
         const text = selected.getAttribute('data-text');
         setSelectedAnswer(text);
@@ -38,11 +42,12 @@ const QuestionPage = (props) => {
     const submitAnswer = (event) => {
         event.stopPropagation();
         if (selectedAnswer === '') return;
+
         //First we will display whether the user got the answer correct
         const isCorrect = (selectedAnswer === currentTrivia.correct);
         setRevealAnswer([true, isCorrect])
 
-        //After a timeout, the next question will be shown
+        //After a timeout, the states will be reset, and the next question will be shown.
         setTimeout(() => {
             setRevealAnswer([false, false]);
             setSelectedAnswer('');
