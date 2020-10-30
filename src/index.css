@@ -39,6 +39,9 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.trivia-status {
   overflow: hidden;
   white-space: nowrap;
 }

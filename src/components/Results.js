@@ -16,7 +16,7 @@ const Results = (props) => {
                 {questions.map((question, ind) => {
                     const correct = correctAnswers[ind];
                     return (
-                        <div className={`review-question ${correct ? 'success' : 'fail'}`}>
+                        <div className={`review-question ${correct ? 'success' : 'fail'}`} data-testid='review-question' key={ind}>
                             <div>
                                 <i className={correct ? 'fas fa-check fa-3x success' : 'fas fa-times fa-3x fail'}></i>
                                 <span>{`${ind + 1}. ${question.question}`}</span></div>

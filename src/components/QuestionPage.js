@@ -66,7 +66,7 @@ const QuestionPage = (props) => {
         <main>
             {/* The header sub-component gives round information and the question */}
             <div id="trivia-header">
-                <div>
+                <div className="trivia-status">
                     <h2>Question Number</h2>
                     <span data-testid="question-number">{currentIndex + 1}</span>
                 </div>
@@ -75,7 +75,7 @@ const QuestionPage = (props) => {
                     {currentTrivia.question}
                 </div>
 
-                <div>
+                <div className="trivia-status">
                     <h2>Total Correct</h2>
                     <span>{totalCorrect}</span>
                 </div>
