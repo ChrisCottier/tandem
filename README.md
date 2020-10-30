@@ -128,3 +128,9 @@ const Results = (props) => {
   );
 };
 ```
+
+### Unit Tests
+
+Unit tests verify the App, Welcome, Trivia, and Results components are working as expected. The unit tests can be found in the `/src/test` directory.
+
+Possible improvement: One test triggers a no-op warning: `Can't perform a React state update on an unmounted component.` Although for all intents and purposes the component appears to be mounted the whole time, the asynchronous nature of the waitFor function seems to cause this warning. This does not effect the test result, but ought to be addressed once an appropriate fix is found.
