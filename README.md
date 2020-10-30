@@ -8,8 +8,8 @@ From a pool of 20 questions, 10 are chosen in random order, guaranteeing a diffe
 
 React seemed like a natural choice for this kind of application for two primary reasons:
 
-1. The quiz pages will likely be identical except for input, so writing component that can take similar inputs and display them
-   in an identical fashion seemed like a useful and flexible tact.
+1. The quiz pages will likely be identical for the question input, so writing a component that can take similar inputs and display them
+   in the same manner seemed appropriate.
 2. React Hooks, in this case useState and useEffect, supply the state management necessary to progress through and display results of a trivia
    quiz.
 
