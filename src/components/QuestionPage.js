@@ -71,7 +71,7 @@ const QuestionPage = (props) => {
                     <span data-testid="question-number">{currentIndex + 1}</span>
                 </div>
 
-                <div>
+                <div id="trivia-question">
                     {currentTrivia.question}
                 </div>
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import QuestionPage from './QuestionPage'
 import Results from './Results'
@@ -18,7 +18,7 @@ const Trivia = (props) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     //populate questions by choosing 10 randomly on component load.
-    useState(() => {
+    useEffect(() => {
         if (questions.length !== 0) return;
         setQuestions(chooseQuestions(10, data));
     })
